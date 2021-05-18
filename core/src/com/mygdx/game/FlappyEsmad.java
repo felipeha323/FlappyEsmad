@@ -27,6 +27,6 @@ public class FlappyEsmad extends ApplicationAdapter {
 	@Override
 	public void dispose () {
 		batch.dispose();
-
+	
 	}
 }
