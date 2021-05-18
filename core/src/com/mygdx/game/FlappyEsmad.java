@@ -67,7 +67,10 @@ public class FlappyEsmad extends ApplicationAdapter {
 	batch.draw(background,0,0, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 
 batch.draw(toptube,Gdx.graphics.getWidth()/2 - toptube.getWidth()/2,
-		Gdx.graphics.getHeight()/2 - toptube.getHeight()/2);
+		Gdx.graphics.getHeight()/2  + gap / 2);
+
+batch.draw(bottomTube,Gdx.graphics.getWidth()/2 - bottomTube.getWidth() / 2,
+		Gdx.graphics.getHeight()/2 -gap/2 - bottomTube.getHeight());
 
 
 	batch.draw(capuchos[flapState],Gdx.graphics.getWidth()/2 - capuchos[flapState].getWidth()/2,
