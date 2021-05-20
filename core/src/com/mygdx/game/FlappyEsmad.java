@@ -66,9 +66,10 @@ public class FlappyEsmad extends ApplicationAdapter {
 
 		topTubeRectangle = new Rectangle[numberOfTube];
 		bottomTubeRectangle = new Rectangle[numberOfTube];
+		distanceBetweenTubes = Gdx.graphics.getWidth()/2;
 
 		capuchoY=Gdx.graphics.getHeight()/2 - capuchos[flapState].getHeight()/2;
-		distanceBetweenTubes = Gdx.graphics.getWidth()/2;
+
 
 		for (int i =0; i< numberOfTube; i++){
 
@@ -78,7 +79,20 @@ public class FlappyEsmad extends ApplicationAdapter {
 			bottomTubeRectangle[i] = new Rectangle();
 		}
 	}
-	
+	public void gameStart(){
+		capuchoY=Gdx.graphics.getHeight()/2 - capuchos[flapState].getHeight()/2;
+		scoringTube=0;
+		score=0;
+		velocity=0;
+		for (int i =0; i< numberOfTube; i++){
+
+			tubeOffset[i]=(random.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - gap - 200);
+			tubeX[i] = Gdx.graphics.getWidth()/2 - toptube.getWidth()/2 + i * distanceBetweenTubes;
+			topTubeRectangle[i] = new Rectangle();
+			bottomTubeRectangle[i] = new Rectangle();
+		}
+
+	}
 	@Override
 	public void render () {
 		batch.begin();
@@ -88,7 +102,7 @@ public class FlappyEsmad extends ApplicationAdapter {
 
 
 			if (Gdx.input.justTouched()){
-				velocity=-30;
+				velocity=-25;
 
 			}
 
@@ -134,21 +148,23 @@ public class FlappyEsmad extends ApplicationAdapter {
 				capuchoY -= velocity;
 
 			} else {
-				gameState=2
+				gameState=2;
 			}
 
-			if (flapState==0){
-				flapState=1;
-			}else {
-				flapState=0;
+			if (flapState == 0) {
+				flapState = 1;
+			} else {
+				flapState = 0;
 			}
 
+		} else if(gameState == 0) {
 
-		}else if (gameState==0){
-			if(Gdx.input.justTouched()){
-				gameState=1;
+			if (Gdx.input.justTouched()) {
+				gameState = 1;
 			}
-		}else if (gameState == 2){
+
+		} else if (gameState == 2) {
+
 			batch.draw(gameOver,Gdx.graphics.getWidth() / 2 - gameOver.getWidth() / 2,
 					Gdx.graphics.getHeight() / 2 - gameOver.getHeight() / 2);
 
@@ -159,19 +175,24 @@ public class FlappyEsmad extends ApplicationAdapter {
 				gameStart();
 
 			}
+
 		}
-		batch.draw(capuchos[flapState],Gdx.graphics.getWidth()/2 - capuchos[flapState].getWidth()/2,
-			capuchoY);
-		bitmapFont.draw(batch,Integer.toString(score),200,200 );
-	    batch.end();
-	    circle.set(Gdx.graphics.getWidth() / 2
+
+		batch.draw(capuchos[flapState],Gdx.graphics.getWidth() / 2 - capuchos[flapState].getWidth() / 2 ,
+				capuchoY);
+
+		bitmapFont.draw(batch,Integer.toString(score),200,200);
+
+		batch.end();
+
+		circle.set(Gdx.graphics.getWidth() / 2
 				,capuchoY + capuchos[flapState].getWidth() / 2
 				,capuchos[flapState].getWidth() / 2);
 
 		//shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 		//shapeRenderer.setColor(Color.RED);
 		//shapeRenderer.circle(circle.x,circle.y,circle.radius);
-	    for (int i = 0 ; i < numberOfTube ; i++) {
+		for (int i = 0 ; i < numberOfTube ; i++) {
 			/*
 			shapeRenderer.rect(tubeX[i],
 					Gdx.graphics.getHeight() / 2  + gap / 2 + tubeOffset[i],
@@ -191,6 +212,7 @@ public class FlappyEsmad extends ApplicationAdapter {
 
 		}
 		shapeRenderer.end();
+
 
 	}
 	
