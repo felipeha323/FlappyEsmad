@@ -30,7 +30,7 @@ public class FlappyEsmad extends ApplicationAdapter {
 	float[] tubeOffset= new float[numberOfTube];
 	Random random= new Random();
 	float[] tubeX=new float[numberOfTube];
-	float tubeVelocity=4;
+	float tubeVelocity=3;
 
 	float distanceBetweenTubes;
 	Texture gameOver;
@@ -59,14 +59,14 @@ public class FlappyEsmad extends ApplicationAdapter {
 
 		bitmapFont =new BitmapFont();
 		bitmapFont.setColor(Color.WHITE);
-		bitmapFont.getData().scale(10);
+		bitmapFont.getData().scale(5);
 
 		shapeRenderer = new ShapeRenderer();
 		circle = new Circle();
 
 		topTubeRectangle = new Rectangle[numberOfTube];
 		bottomTubeRectangle = new Rectangle[numberOfTube];
-		distanceBetweenTubes = Gdx.graphics.getWidth()/2;
+		distanceBetweenTubes = (float) (Gdx.graphics.getWidth());
 
 		capuchoY=Gdx.graphics.getHeight()/2 - capuchos[flapState].getHeight()/2;
 
@@ -74,7 +74,7 @@ public class FlappyEsmad extends ApplicationAdapter {
 		for (int i =0; i< numberOfTube; i++){
 
 			tubeOffset[i]=(random.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - gap - 200);
-			tubeX[i] = Gdx.graphics.getWidth()/2 - toptube.getWidth()/2 + i * distanceBetweenTubes;
+			tubeX[i] =(float) Gdx.graphics.getWidth()/2 - toptube.getWidth()/2 +Gdx.graphics.getWidth()+ i * distanceBetweenTubes;
 			topTubeRectangle[i] = new Rectangle();
 			bottomTubeRectangle[i] = new Rectangle();
 		}
@@ -86,8 +86,11 @@ public class FlappyEsmad extends ApplicationAdapter {
 		velocity=0;
 		for (int i =0; i< numberOfTube; i++){
 
+
+
+
 			tubeOffset[i]=(random.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - gap - 200);
-			tubeX[i] = Gdx.graphics.getWidth()/2 - toptube.getWidth()/2 + i * distanceBetweenTubes;
+			tubeX[i] = Gdx.graphics.getWidth()/2 - toptube.getWidth()/2+ Gdx.graphics.getWidth()+ i * distanceBetweenTubes;
 			topTubeRectangle[i] = new Rectangle();
 			bottomTubeRectangle[i] = new Rectangle();
 		}
@@ -102,7 +105,7 @@ public class FlappyEsmad extends ApplicationAdapter {
 
 
 			if (Gdx.input.justTouched()){
-				velocity=-25;
+				velocity=-30;
 
 			}
 
@@ -181,7 +184,7 @@ public class FlappyEsmad extends ApplicationAdapter {
 		batch.draw(capuchos[flapState],Gdx.graphics.getWidth() / 2 - capuchos[flapState].getWidth() / 2 ,
 				capuchoY);
 
-		bitmapFont.draw(batch,Integer.toString(score),200,200);
+		bitmapFont.draw(batch,Integer.toString(score),150,150);
 
 		batch.end();
 
