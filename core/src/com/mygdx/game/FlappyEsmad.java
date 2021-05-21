@@ -26,7 +26,7 @@ public class FlappyEsmad extends ApplicationAdapter {
 	Texture toptube;
 	Texture bottomTube;
 	int numberOfTube=4;
-	float gap=400;
+	float gap=600;
 	float[] tubeOffset= new float[numberOfTube];
 	Random random= new Random();
 	float[] tubeX=new float[numberOfTube];
