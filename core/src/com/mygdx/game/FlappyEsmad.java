@@ -49,7 +49,7 @@ public class FlappyEsmad extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		background = new Texture("fondo.jpg");
+		background = new Texture("fondo5.jpg");
 		capuchos = new Texture[2];
 		capuchos[0] = new Texture("capucho.png");
 		capuchos[1] = new Texture("capucho_2.png");
